@@ -1,2 +1,2 @@
-# Airtag_dissertation
+# Airtag Dissertation
 A repository made to hold the code for my dissertation on the Apple AirTag/ Find My network
