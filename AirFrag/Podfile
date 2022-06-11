@@ -1,0 +1,13 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+#target 'AirFrag' do
+  # Comment the next line if you don't want to use dynamic frameworks
+#  use_frameworks!
+
+#workspace 
+#'/Users/daniel/Documents/airtag_dissertation/AirFrag/AirFrag.xcworkspace
+
+target 'AirFrag' do
+  pod 'CNIOBoringSSL', '~> 2.19'
+end

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A764978AE057EBB9257F92F /* libPods-AirFrag.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A57D078A8AF5D85CE529423 /* libPods-AirFrag.a */; };
+		6541CC1B2852AC21008981FA /* AnisetteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6587988F2852A4C400D04735 /* AnisetteDataManager.swift */; };
+		65D4EB5B2854C79F00B77D39 /* AppleAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4EB542854C79E00B77D39 /* AppleAccountData.m */; };
+		65D4EB5C2854C79F00B77D39 /* ALTAnisetteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4EB582854C79E00B77D39 /* ALTAnisetteData.m */; };
+		65D4EB5D2854C79F00B77D39 /* OpenHaystackPluginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D4EB592854C79E00B77D39 /* OpenHaystackPluginService.m */; };
 		6606E9982851FC1F006D656D /* FindMyKeyDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6606E9972851FC1F006D656D /* FindMyKeyDecoder.swift */; };
 		6606E99C2851FC5A006D656D /* DecryptReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6606E99B2851FC5A006D656D /* DecryptReport.swift */; };
 		6606E99F2851FE3A006D656D /* BoringSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6606E99E2851FE3A006D656D /* BoringSSL.m */; };
@@ -31,6 +36,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		24D2B24A862EB578A6AF6D18 /* Pods-AirFrag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirFrag.release.xcconfig"; path = "Target Support Files/Pods-AirFrag/Pods-AirFrag.release.xcconfig"; sourceTree = "<group>"; };
+		6587988F2852A4C400D04735 /* AnisetteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnisetteDataManager.swift; sourceTree = "<group>"; };
+		65D4EB542854C79E00B77D39 /* AppleAccountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleAccountData.m; path = ../../../openhaystack/OpenHaystack/OpenHaystackMail/AppleAccountData.m; sourceTree = "<group>"; };
+		65D4EB552854C79E00B77D39 /* AppleAccountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleAccountData.h; path = ../../../openhaystack/OpenHaystack/OpenHaystackMail/AppleAccountData.h; sourceTree = "<group>"; };
+		65D4EB562854C79E00B77D39 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../openhaystack/OpenHaystack/OpenHaystackMail/Info.plist; sourceTree = "<group>"; };
+		65D4EB572854C79E00B77D39 /* ALTAnisetteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALTAnisetteData.h; path = ../../../openhaystack/OpenHaystack/OpenHaystackMail/ALTAnisetteData.h; sourceTree = "<group>"; };
+		65D4EB582854C79E00B77D39 /* ALTAnisetteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALTAnisetteData.m; path = ../../../openhaystack/OpenHaystack/OpenHaystackMail/ALTAnisetteData.m; sourceTree = "<group>"; };
+		65D4EB592854C79E00B77D39 /* OpenHaystackPluginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenHaystackPluginService.m; path = ../../../openhaystack/OpenHaystack/OpenHaystackMail/OpenHaystackPluginService.m; sourceTree = "<group>"; };
+		65D4EB5A2854C79F00B77D39 /* OpenHaystackPluginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenHaystackPluginService.h; path = ../../../openhaystack/OpenHaystack/OpenHaystackMail/OpenHaystackPluginService.h; sourceTree = "<group>"; };
 		6606E9972851FC1F006D656D /* FindMyKeyDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMyKeyDecoder.swift; sourceTree = "<group>"; };
 		6606E99B2851FC5A006D656D /* DecryptReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptReport.swift; sourceTree = "<group>"; };
 		6606E99E2851FE3A006D656D /* BoringSSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoringSSL.m; sourceTree = "<group>"; };
@@ -44,6 +58,8 @@
 		66B54E3C28515A12007A1C75 /* FindMyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMyController.swift; sourceTree = "<group>"; };
 		66B54E4128515B55007A1C75 /* ReportsFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsFetcher.m; sourceTree = "<group>"; };
 		66B54E4328515BF1007A1C75 /* ReportsFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsFetcher.h; sourceTree = "<group>"; };
+		6A57D078A8AF5D85CE529423 /* libPods-AirFrag.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AirFrag.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7CADCB580D684E92D956146 /* Pods-AirFrag.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirFrag.debug.xcconfig"; path = "Target Support Files/Pods-AirFrag/Pods-AirFrag.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,12 +67,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A764978AE057EBB9257F92F /* libPods-AirFrag.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65D4EB532854C66E00B77D39 /* OpenHaystackMail */ = {
+			isa = PBXGroup;
+			children = (
+				65D4EB572854C79E00B77D39 /* ALTAnisetteData.h */,
+				65D4EB582854C79E00B77D39 /* ALTAnisetteData.m */,
+				65D4EB552854C79E00B77D39 /* AppleAccountData.h */,
+				65D4EB542854C79E00B77D39 /* AppleAccountData.m */,
+				65D4EB562854C79E00B77D39 /* Info.plist */,
+				65D4EB5A2854C79F00B77D39 /* OpenHaystackPluginService.h */,
+				65D4EB592854C79E00B77D39 /* OpenHaystackPluginService.m */,
+			);
+			path = OpenHaystackMail;
+			sourceTree = "<group>";
+		};
 		6606E99D2851FE0F006D656D /* BoringSSL */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +100,7 @@
 		661531102851493100D0F58D = {
 			isa = PBXGroup;
 			children = (
+				65D4EB532854C66E00B77D39 /* OpenHaystackMail */,
 				6606E9A128520294006D656D /* Bridging-Header.h */,
 				6606E99D2851FE0F006D656D /* BoringSSL */,
 				66B54E3F28515A59007A1C75 /* ReportFetcher */,
@@ -76,6 +108,8 @@
 				66B54E3728515490007A1C75 /* Model */,
 				6615311B2851493100D0F58D /* AirFrag */,
 				6615311A2851493100D0F58D /* Products */,
+				C0D04A32B5098143AE82DCCB /* Pods */,
+				B18588C05A4EAC20BD664DBB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,10 +152,28 @@
 		66B54E3F28515A59007A1C75 /* ReportFetcher */ = {
 			isa = PBXGroup;
 			children = (
+				6587988F2852A4C400D04735 /* AnisetteDataManager.swift */,
 				66B54E4128515B55007A1C75 /* ReportsFetcher.m */,
 				66B54E4328515BF1007A1C75 /* ReportsFetcher.h */,
 			);
 			path = ReportFetcher;
+			sourceTree = "<group>";
+		};
+		B18588C05A4EAC20BD664DBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A57D078A8AF5D85CE529423 /* libPods-AirFrag.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0D04A32B5098143AE82DCCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7CADCB580D684E92D956146 /* Pods-AirFrag.debug.xcconfig */,
+				24D2B24A862EB578A6AF6D18 /* Pods-AirFrag.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +183,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 661531202851493100D0F58D /* Build configuration list for PBXNativeTarget "AirFrag" */;
 			buildPhases = (
+				29526F3839EE995CFE81987B /* [CP] Check Pods Manifest.lock */,
 				661531152851493100D0F58D /* Sources */,
 				661531162851493100D0F58D /* Frameworks */,
 				661531172851493100D0F58D /* CopyFiles */,
@@ -152,7 +205,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					661531182851493100D0F58D = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -178,16 +231,45 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		29526F3839EE995CFE81987B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AirFrag-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		661531152851493100D0F58D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D4EB5C2854C79F00B77D39 /* ALTAnisetteData.m in Sources */,
 				66B54E3B2851554E007A1C75 /* PreviewData.swift in Sources */,
 				66B54E39285154B5007A1C75 /* Accessory.swift in Sources */,
+				6541CC1B2852AC21008981FA /* AnisetteDataManager.swift in Sources */,
 				6615311D2851493100D0F58D /* main.swift in Sources */,
 				66B54E4228515B55007A1C75 /* ReportsFetcher.m in Sources */,
 				6615312428514A1900D0F58D /* Models.swift in Sources */,
+				65D4EB5D2854C79F00B77D39 /* OpenHaystackPluginService.m in Sources */,
+				65D4EB5B2854C79F00B77D39 /* AppleAccountData.m in Sources */,
 				6606E99C2851FC5A006D656D /* DecryptReport.swift in Sources */,
 				6606E9982851FC1F006D656D /* FindMyKeyDecoder.swift in Sources */,
 				66B54E3D28515A12007A1C75 /* FindMyController.swift in Sources */,
@@ -315,8 +397,10 @@
 		};
 		661531212851493100D0F58D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7CADCB580D684E92D956146 /* Pods-AirFrag.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -332,8 +416,10 @@
 		};
 		661531222851493100D0F58D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24D2B24A862EB578A6AF6D18 /* Pods-AirFrag.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

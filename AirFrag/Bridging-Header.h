@@ -11,5 +11,7 @@
 
 #import "BoringSSL.h"
 #import "ReportsFetcher.h"
+#import "ALTAnisetteData.h"
+#import "AppleAccountData.h"
 
 #endif /* Bridging_Header_h */
