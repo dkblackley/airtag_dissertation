@@ -4,6 +4,63 @@
    <FileRef
       location = "group:AirFrag.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:OpenHayStack"
+      name = "OpenHayStack">
+      <Group
+         location = "group:OpenHayStack/OpenHaystackMail"
+         name = "OpenHaystackMail">
+      </Group>
+      <Group
+         location = "group:OpenHayStack/Model"
+         name = "Model">
+         <FileRef
+            location = "group:OpenHayStack/Model/PreviewData.swift">
+         </FileRef>
+         <FileRef
+            location = "group:OpenHayStack/Model/Accessory.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:OpenHayStack/FindMy"
+         name = "FindMy">
+         <FileRef
+            location = "group:OpenHayStack/FindMy/DecryptReport.swift">
+         </FileRef>
+         <FileRef
+            location = "group:OpenHayStack/FindMy/FindMyKeyDecoder.swift">
+         </FileRef>
+         <FileRef
+            location = "group:OpenHayStack/FindMy/FindMyController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:OpenHayStack/FindMy/Models.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:OpenHayStack/BoringSSL"
+         name = "BoringSSL">
+         <FileRef
+            location = "group:OpenHayStack/BoringSSL/BoringSSL.m">
+         </FileRef>
+         <FileRef
+            location = "group:OpenHayStack/BoringSSL/BoringSSL.h">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:OpenHayStack/ReportFetcher"
+         name = "ReportFetcher">
+         <FileRef
+            location = "group:OpenHayStack/ReportFetcher/AnisetteDataManager.swift">
+         </FileRef>
+         <FileRef
+            location = "group:OpenHayStack/ReportFetcher/ReportsFetcher.h">
+         </FileRef>
+         <FileRef
+            location = "group:OpenHayStack/ReportFetcher/ReportsFetcher.m">
+         </FileRef>
+      </Group>
+   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>

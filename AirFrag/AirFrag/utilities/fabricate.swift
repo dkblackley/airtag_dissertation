@@ -12,7 +12,7 @@ import CryptoKit
 public class Fabricator {
     
     //let deviceId: String
-    //var keys = [FindMyKey]()
+    var test_key = [FindMyKey]()
     //var catalinaBigSurKeyFiles: [Data]?
 
     /// KeyHash: Report results.
@@ -26,12 +26,15 @@ public class Fabricator {
         let plist = Bundle.main.url(forResource: "sampleKeys", withExtension:"plist")!
             do {
                 let data = try Data(contentsOf: plist)
-                //let plist = try Data(contentsOf: Bundle(for: Self.self).url(forResource: "sampleKeys", withExtension: "plist")!)
+
                 let result = try PropertyListDecoder().decode([FindMyDevice].self, from: data)
                 let keys = result.first!.keys
+                let my_key = keys[0]
+                print(key1)
             } catch { print(error) }
         
         print("Done")
+        
         
 //        do {
 //            let plist = try Data(contentsOf: Bundle(for: Self.self).url(forResource: "sampleKeys", withExtension: "plist")!)
