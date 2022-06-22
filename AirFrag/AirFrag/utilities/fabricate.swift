@@ -7,55 +7,43 @@
 
 import Foundation
 import CryptoKit
-
+import Combine
+import OSLog
 
 public class Fabricator {
     
+    
+    
     //let deviceId: String
-    var test_key = [FindMyKey]()
+    //var report_fetcher: FindMyController
+//    var test_accessories: [Accessory]
+//    var myAccessoryController: AccessoryController
+//    var myFindMyController: FindMyController
     //var catalinaBigSurKeyFiles: [Data]?
+    //@State var alertType: AlertType?
+    
+    //var isLoading: Bool
 
     /// KeyHash: Report results.
    // var reports: [FindMyReport]?
 
     //var decryptedReports: [FindMyLocationReport]?
     
-    internal init (){
+    
+    
+    internal init () throws {
         print("test")
         
-        let plist = Bundle.main.url(forResource: "sampleKeys", withExtension:"plist")!
-            do {
-                let data = try Data(contentsOf: plist)
-
-                let result = try PropertyListDecoder().decode([FindMyDevice].self, from: data)
-                let keys = result.first!.keys
-                let my_key = keys[0]
-                print(key1)
-            } catch { print(error) }
+        //let plist = Bundle.main.url(forResource: "sampleKeys", withExtension:"plist")!
+            //do {
         
-        print("Done")
+//        let data = try Data(contentsOf: plist)
+//        let result = try PropertyListDecoder().decode([FindMyDevice].self, from: data)
+//        let keys = result.first!.keys
+//        let my_key = keys[0]
+        //print(my_key)
+            //} catch { print(error) }
         
-        
-//        do {
-//            let plist = try Data(contentsOf: Bundle(for: Self.self).url(forResource: "sampleKeys", withExtension: "plist")!)
-//            let devices = try PropertyListDecoder().decode([FindMyDevice].self, from: plist)
-//
-//            let keys = devices.first!.keys
-//            let key = keys[0]
-//        } catch {
-//            print("lol")
-//        }
-        
-//                for key in keys {
-//                    let publicKey = key.advertisedKey
-//                    var sha = SHA256()
-//                    sha.update(data: publicKey)
-//                    let digest = sha.finalize()
-//                    let hashedKey = Data(digest)
-//
     }
-    
-//    func fetch_location() {
-//        continue
-//    }
+
 }
