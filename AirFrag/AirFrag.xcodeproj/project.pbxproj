@@ -31,7 +31,6 @@
 		652AFFB52856217B0026FEC2 /* ReportsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFA32856217B0026FEC2 /* ReportsFetcher.m */; };
 		652AFFBD285621920026FEC2 /* ALTAnisetteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFB7285621920026FEC2 /* ALTAnisetteData.m */; };
 		652AFFBE285621920026FEC2 /* ALTAnisetteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFB7285621920026FEC2 /* ALTAnisetteData.m */; };
-		652AFFC0285621920026FEC2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 652AFFB8285621920026FEC2 /* Info.plist */; };
 		652AFFC1285621920026FEC2 /* AppleAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFB9285621920026FEC2 /* AppleAccountData.m */; };
 		652AFFC2285621920026FEC2 /* AppleAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFB9285621920026FEC2 /* AppleAccountData.m */; };
 		652AFFC3285621920026FEC2 /* OpenHaystackPluginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFBC285621920026FEC2 /* OpenHaystackPluginService.m */; };
@@ -48,6 +47,25 @@
 		655277FD285612FC00ADB9DA /* AirFragTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655277FC285612FC00ADB9DA /* AirFragTests.swift */; };
 		65527807285612FC00ADB9DA /* AirFragUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65527806285612FC00ADB9DA /* AirFragUITests.swift */; };
 		65527809285612FC00ADB9DA /* AirFragUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65527808285612FC00ADB9DA /* AirFragUITestsLaunchTests.swift */; };
+		659609572864962500CE7E53 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D23228576BC900C1962F /* FileManager.swift */; };
+		659609582864962A00CE7E53 /* CodeResources in Resources */ = {isa = PBXBuildFile; fileRef = 65F2D22428576AB100C1962F /* CodeResources */; };
+		659609592864963100CE7E53 /* HaystackMail in Resources */ = {isa = PBXBuildFile; fileRef = 65F2D22728576AB100C1962F /* HaystackMail */; };
+		6596095A2864963100CE7E53 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65F2D22828576AB100C1962F /* Info.plist */; };
+		6596095C2864963E00CE7E53 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652AFF962856217B0026FEC2 /* PreviewData.swift */; };
+		6596095D2864963E00CE7E53 /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652AFF972856217B0026FEC2 /* Accessory.swift */; };
+		6596095E2864964100CE7E53 /* FindMyKeyDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652AFF9A2856217B0026FEC2 /* FindMyKeyDecoder.swift */; };
+		6596095F2864964100CE7E53 /* FindMyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652AFF9B2856217B0026FEC2 /* FindMyController.swift */; };
+		659609602864964100CE7E53 /* DecryptReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652AFF992856217B0026FEC2 /* DecryptReport.swift */; };
+		659609612864964100CE7E53 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652AFF9C2856217B0026FEC2 /* Models.swift */; };
+		659609622864964500CE7E53 /* AcessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFCC285688220026FEC2 /* AcessoryController.swift */; };
+		659609632864964900CE7E53 /* fabricate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6520E1C9285615310009C68E /* fabricate.swift */; };
+		659609642864964900CE7E53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655277EC285612FA00ADB9DA /* ContentView.swift */; };
+		659609652864964900CE7E53 /* builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659E2AD1286474A600283045 /* builder.swift */; };
+		659609662864964900CE7E53 /* AirFragApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655277EA285612FA00ADB9DA /* AirFragApp.swift */; };
+		659609672864964A00CE7E53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655277EC285612FA00ADB9DA /* ContentView.swift */; };
+		659609682864964A00CE7E53 /* AirFragApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655277EA285612FA00ADB9DA /* AirFragApp.swift */; };
+		659E2AD2286474A600283045 /* builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659E2AD1286474A600283045 /* builder.swift */; };
+		659E2AD3286474A600283045 /* builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659E2AD1286474A600283045 /* builder.swift */; };
 		65F2D22A28576AB100C1962F /* CodeResources in Resources */ = {isa = PBXBuildFile; fileRef = 65F2D22428576AB100C1962F /* CodeResources */; };
 		65F2D22B28576AB100C1962F /* CodeResources in Resources */ = {isa = PBXBuildFile; fileRef = 65F2D22428576AB100C1962F /* CodeResources */; };
 		65F2D22C28576AB100C1962F /* HaystackMail in Resources */ = {isa = PBXBuildFile; fileRef = 65F2D22728576AB100C1962F /* HaystackMail */; };
@@ -94,7 +112,6 @@
 		652AFFA32856217B0026FEC2 /* ReportsFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsFetcher.m; sourceTree = "<group>"; };
 		652AFFB6285621920026FEC2 /* ALTAnisetteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTAnisetteData.h; sourceTree = "<group>"; };
 		652AFFB7285621920026FEC2 /* ALTAnisetteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTAnisetteData.m; sourceTree = "<group>"; };
-		652AFFB8285621920026FEC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		652AFFB9285621920026FEC2 /* AppleAccountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleAccountData.m; sourceTree = "<group>"; };
 		652AFFBA285621920026FEC2 /* AppleAccountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleAccountData.h; sourceTree = "<group>"; };
 		652AFFBB285621920026FEC2 /* OpenHaystackPluginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenHaystackPluginService.h; sourceTree = "<group>"; };
@@ -113,6 +130,7 @@
 		65527806285612FC00ADB9DA /* AirFragUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirFragUITests.swift; sourceTree = "<group>"; };
 		65527808285612FC00ADB9DA /* AirFragUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirFragUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6568C42A2856176C00DC43BB /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
+		659E2AD1286474A600283045 /* builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = builder.swift; sourceTree = "<group>"; };
 		65F2D22428576AB100C1962F /* CodeResources */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CodeResources; sourceTree = "<group>"; };
 		65F2D22728576AB100C1962F /* HaystackMail */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = HaystackMail; sourceTree = "<group>"; };
 		65F2D22828576AB100C1962F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +181,7 @@
 			children = (
 				652AFF9028561D1A0026FEC2 /* sampleKeys.plist */,
 				6520E1C9285615310009C68E /* fabricate.swift */,
+				659E2AD1286474A600283045 /* builder.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -188,7 +207,6 @@
 				652AFFB7285621920026FEC2 /* ALTAnisetteData.m */,
 				652AFFBA285621920026FEC2 /* AppleAccountData.h */,
 				652AFFB9285621920026FEC2 /* AppleAccountData.m */,
-				652AFFB8285621920026FEC2 /* Info.plist */,
 				652AFFBB285621920026FEC2 /* OpenHaystackPluginService.h */,
 				652AFFBC285621920026FEC2 /* OpenHaystackPluginService.m */,
 			);
@@ -468,7 +486,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65F2D22B28576AB100C1962F /* CodeResources in Resources */,
-				652AFFC0285621920026FEC2 /* Info.plist in Resources */,
 				652AFF9228561D1A0026FEC2 /* sampleKeys.plist in Resources */,
 				65F2D22F28576AB100C1962F /* Info.plist in Resources */,
 				65F2D22D28576AB100C1962F /* HaystackMail in Resources */,
@@ -479,6 +496,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659609582864962A00CE7E53 /* CodeResources in Resources */,
+				659609592864963100CE7E53 /* HaystackMail in Resources */,
+				6596095A2864963100CE7E53 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +553,7 @@
 				652AFFAA2856217B0026FEC2 /* FindMyKeyDecoder.swift in Sources */,
 				655277EB285612FA00ADB9DA /* AirFragApp.swift in Sources */,
 				65F2D23028576AB100C1962F /* MailPluginManager.swift in Sources */,
+				659E2AD2286474A600283045 /* builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,9 +563,11 @@
 			files = (
 				652AFFCE285688220026FEC2 /* AcessoryController.swift in Sources */,
 				65F2D23128576AB100C1962F /* MailPluginManager.swift in Sources */,
+				659E2AD3286474A600283045 /* builder.swift in Sources */,
 				652AFFBE285621920026FEC2 /* ALTAnisetteData.m in Sources */,
 				652AFFA92856217B0026FEC2 /* DecryptReport.swift in Sources */,
 				655277FD285612FC00ADB9DA /* AirFragTests.swift in Sources */,
+				659609672864964A00CE7E53 /* ContentView.swift in Sources */,
 				652AFFB52856217B0026FEC2 /* ReportsFetcher.m in Sources */,
 				652AFFB32856217B0026FEC2 /* AnisetteDataManager.swift in Sources */,
 				6520E1CB285615310009C68E /* fabricate.swift in Sources */,
@@ -553,6 +576,7 @@
 				652AFFC4285621920026FEC2 /* OpenHaystackPluginService.m in Sources */,
 				652AFFA72856217B0026FEC2 /* Accessory.swift in Sources */,
 				652AFFA52856217B0026FEC2 /* PreviewData.swift in Sources */,
+				659609682864964A00CE7E53 /* AirFragApp.swift in Sources */,
 				652AFFAD2856217B0026FEC2 /* FindMyController.swift in Sources */,
 				652AFFC2285621920026FEC2 /* AppleAccountData.m in Sources */,
 				65F2D23428576BC900C1962F /* FileManager.swift in Sources */,
@@ -565,9 +589,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659609602864964100CE7E53 /* DecryptReport.swift in Sources */,
+				6596095D2864963E00CE7E53 /* Accessory.swift in Sources */,
+				6596095C2864963E00CE7E53 /* PreviewData.swift in Sources */,
+				659609652864964900CE7E53 /* builder.swift in Sources */,
+				659609572864962500CE7E53 /* FileManager.swift in Sources */,
 				65527807285612FC00ADB9DA /* AirFragUITests.swift in Sources */,
+				659609662864964900CE7E53 /* AirFragApp.swift in Sources */,
+				6596095F2864964100CE7E53 /* FindMyController.swift in Sources */,
+				659609622864964500CE7E53 /* AcessoryController.swift in Sources */,
+				659609632864964900CE7E53 /* fabricate.swift in Sources */,
 				652AFFCB2856611E0026FEC2 /* MainView.swift in Sources */,
+				6596095E2864964100CE7E53 /* FindMyKeyDecoder.swift in Sources */,
+				659609642864964900CE7E53 /* ContentView.swift in Sources */,
 				65527809285612FC00ADB9DA /* AirFragUITestsLaunchTests.swift in Sources */,
+				659609612864964100CE7E53 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +677,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -694,6 +731,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

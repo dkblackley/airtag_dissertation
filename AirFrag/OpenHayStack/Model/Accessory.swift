@@ -72,17 +72,25 @@ class Accessory: ObservableObject, Codable, Identifiable, Equatable, Hashable {
     }
     var lastAdvertisement: Date?
 
-    init(name: String = "New accessory", color: Color = randomColor(), iconName: String = randomIcon()) throws {
+    init(name: String = "New accessory", color: Color = randomColor(), iconName: String = randomIcon(), key: Data = Data(), symKey: Data = Data()) throws {
         self.name = name
-        guard let key = BoringSSL.generateNewPrivateKey() else {
-            throw KeyError.keyGenerationFailed
+        if (key.isEmpty) {
+            guard let key = BoringSSL.generateNewPrivateKey() else {
+                throw KeyError.keyGenerationFailed
+            }
         }
         self.id = key.hashValue
         self.privateKey = key
-        let symKey = SymmetricKey(size: .bits256)
-        self.symmetricKey = symKey.withUnsafeBytes {
-            return Data(Array($0))
+        
+        if (symKey.isEmpty) {
+            let symKey = SymmetricKey(size: .bits256)
+            self.symmetricKey = symKey.withUnsafeBytes {
+                return Data(Array($0))
+            }
+        } else {
+            self.symmetricKey = symKey
         }
+        
         self.usesDerivation = false
         self.oldestRelevantSymmetricKey = self.symmetricKey
         self.lastDerivationTimestamp = Date()
@@ -201,7 +209,8 @@ class Accessory: ObservableObject, Codable, Identifiable, Equatable, Hashable {
         return symmetricKey
     }
 
-    func toFindMyDevice() throws -> FindMyDevice {
+    //Code for deiving a key some number of amounts forward
+    func toFindMyDevice(timeframe : Int = (7 * 24 * 60 * 60)) throws -> FindMyDevice {
 
         var findMyKey = [FindMyKey]()
 
@@ -219,7 +228,7 @@ class Accessory: ObservableObject, Codable, Identifiable, Equatable, Hashable {
         )
         if self.usesDerivation {
             /// Derive FindMyKeys until we have symmetric key from one week before now
-            while self.lastDerivationTimestamp < Date() - TimeInterval(7 * 24 * 60 * 60) {
+            while self.lastDerivationTimestamp < Date() - TimeInterval(timeframe) {
                 self.lastDerivationTimestamp.addTimeInterval(self.updateInterval)
                 self.oldestRelevantSymmetricKey = Accessory.kdf(inputData: self.symmetricKey, sharedInfo: "update".data(using: .ascii)!, bytesToReturn: 32)
             }

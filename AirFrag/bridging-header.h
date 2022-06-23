@@ -13,5 +13,6 @@
 #import "ReportsFetcher.h"
 #import "ALTAnisetteData.h"
 #import "AppleAccountData.h"
+#import "OpenHaystackPluginService.h"
 
 #endif /* Bridging_Header_h */

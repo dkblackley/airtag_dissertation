@@ -86,7 +86,8 @@ class FindMyController: ObservableObject {
 
         }
     }
-
+    
+    //This is where reports are fetched, it's just done in another thread
     func fetchReports(for accessories: [Accessory], with token: Data, completion: @escaping (Result<[FindMyDevice], Error>) -> Void) {
         let findMyDevices = accessories.compactMap({ acc -> FindMyDevice? in
             do {

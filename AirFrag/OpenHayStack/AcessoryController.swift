@@ -225,6 +225,7 @@ class AccessoryController: ObservableObject {
     /// Download the location reports from.
     ///
     /// - Parameter completion: called when the reports have been succesfully downloaded or the request has failed
+    /// This is where the searchparty token is generated as well (device specific)
     func downloadLocationReports(completion: @escaping (Result<Void, MainView.AlertType>) -> Void) {
         AnisetteDataManager.shared.requestAnisetteData { [weak self] result in
             guard let self = self else {

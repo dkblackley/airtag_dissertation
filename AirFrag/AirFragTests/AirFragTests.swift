@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import CryptoKit
 @testable import AirFrag
 
 class AirFragTests: XCTestCase {
@@ -31,6 +32,53 @@ class AirFragTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testKeyCreation() throws {
+        
+        let private_key_string = "6d8fa0b60e618196860ce850024d228b9a2fb07e8e4a1ce300770378"
+        let sym_key_string = "496c0133a5b4b6a26492b5a462e29ccc936ed1c7b9a19dce56ffdc2a57e013a8"
+        let private_key_data = private_key_string.hexadecimal
+        let sym_key_data = sym_key_string.hexadecimal
+        
+        let myAccessory = try Accessory(name: "Test1", key: private_key_string.hexadecimal!, symKey: sym_key_string.hexadecimal!)
+        
+        
+        
+    }
+    
+    func testPlugin() throws {
+        
+        //let testing = try Fabricator()
+        let pluginManager = MailPluginManager()
+        //let localPluginURL = Bundle.main.url(forResource: "OpenHaystackMail", withExtension: "mailbundle")!
+        
+        if pluginManager.isMailPluginInstalled != true {
+            if pluginManager.askForPermission(){
+                try pluginManager.installMailPlugin()
+            } else {
+                exit(1)
+            }
+        }
+    }
+    
+    func testKeyGeneration() throws {
+        
+        guard let key = BoringSSL.generateNewPrivateKey() else {
+            throw KeyError.keyGenerationFailed
+        }
+        
+        let key_string = key.hexEncodedString()
+        
+        let key_data = key_string.hexadecimal
+        let symKey = SymmetricKey(size: .bits256)
+        let keyb64 = symKey.withUnsafeBytes {
+            return Data(Array($0))
+        }
+        let symKey2 = SymmetricKey(data: keyb64)
+        
+        XCTAssertEqual(symKey2, symKey)
+        XCTAssertEqual(key, key_data)
     }
 
 }
