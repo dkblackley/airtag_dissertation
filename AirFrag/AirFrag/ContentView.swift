@@ -35,21 +35,61 @@ extension String {
 
 func testKeyCreation() throws {
     
-    let private_key_string = "6d8fa0b60e618196860ce850024d228b9a2fb07e8e4a1ce300770378"
-    let sym_key_string = "496c0133a5b4b6a26492b5a462e29ccc936ed1c7b9a19dce56ffdc2a57e013a8"
+    let private_key_string = "0f1aac032440a25d479b749efafdcb3a570f2e8b4728c0f67ae3b83a"
+    let sym_key_string = "82e3fac54317ba33110ff25907fc0e7721de189d1f83adbf9952f1945d2e266f"
     let private_key_data = private_key_string.hexadecimal
     let sym_key_data = sym_key_string.hexadecimal
     
     let myAccessory = try Accessory(name: "Test1", key: private_key_string.hexadecimal!, symKey: sym_key_string.hexadecimal!)
     
+    print(try myAccessory.getActualPublicKey().hexEncodedString())
+    print(try myAccessory.getAdvertisementKey().hexEncodedString())
+    
 }
 
-func testKeyRetreval() {
+func testKeyRetreval(Acontroller: AccessoryController) {
     
-    let test_key = "6d8fa0b60e618196860ce850024d228b9a2fb07e8e4a1ce300770378"
+    //let test_key = "6d8fa0b60e618196860ce850024d228b9a2fb07e8e4a1ce300770374"
+    let test_key = "c72c30f688c1b2a57879becf9019d8c86d26c047ec340bf07681d797"
     let data_key = test_key.hexadecimal!
+    let current_date = NSDate(timeIntervalSinceNow: 0)
     
-    let fetcher = query(forHashes: [data_key], start: <#T##NSDate#>, duration: <#T##Double#>, searchPartyToken: <#T##NSData#>, completion: <#T##(NSData?) -> Void#>)
+    var sha = SHA256()
+    sha.update(data: data_key)
+    let digest = sha.finalize()
+
+    let public_key = Data(digest).base64EncodedString()
+    
+    let fetcher = ReportsFetcher()
+    //let token = fetcher.fetchSearchpartyToken()!
+    
+    //let anisetteManager = AnisetteDataManager()
+    
+//    let account_data = AnisetteDataManager.shared.requestAnisetteDataAuthKit()
+//    let SPT = account_data.searchPartyToken
+//    
+//    if let spToken = ReportsFetcher().fetchSearchpartyToken() {
+//        let token = spToken
+//    }
+    
+    AnisetteDataManager.shared.requestAnisetteData { [weak Acontroller] result in
+        guard let self = Acontroller else {
+            print("no acessories")
+            return
+        }
+        switch result {
+        case .failure(_):
+            print("no plugin")
+        case .success(let accountData):
+            let SPT = accountData.searchPartyToken
+            
+            fetcher.query(forHashes: [public_key], start: current_date as Date, duration: 1814400, searchPartyToken: SPT!) {result in
+                print("done!")
+        }
+
+    
+    }
+    }
 
     
 }
@@ -63,22 +103,24 @@ struct ContentView: View {
         
         do {
             
-            try testKeyCreation()
-            
             let test_accessories = [try Accessory(name: "test"), try Accessory(name: "test2"), try Accessory(name: "test3")]
             let myFindMyController = FindMyController()
-            
+
             let myAccessoryController = AccessoryController(accessories: test_accessories, findMyController: myFindMyController)
-            
+
             let myView = MainView(controller: myAccessoryController)
-            //let myMail = OpenHaystackPluginService()
-            //OpenHaystackPluginService.sharedService()
+            let myMail = OpenHaystackPluginService()
+//           OpenHaystackPluginService.sharedService()
+            OpenHaystackPluginService.shared()
             
-            //try myAccessoryController.export(accessories: test_accessories)
+//            try myAccessoryController.export(accessories: test_accessories)
             myView.installMailPlugin()
-            
+
             myView.checkPluginIsRunning(silent: false, nil)
             myView.downloadLocationReports()
+            
+            try testKeyCreation()
+            testKeyRetreval(Acontroller: myAccessoryController)
             
             
             

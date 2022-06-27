@@ -175,4 +175,58 @@
     }];
 }
 
+- (void)submitData:(NSArray *)publicKeys
+             startDate:(NSDate *)date
+              duration:(double)duration
+      searchPartyToken:(nonnull NSData *)searchPartyToken
+            completion:(void (^)(NSData *_Nullable))completion {
+
+    // calculate the timestamps for the defined duration
+    long long startDate = [date timeIntervalSince1970] * 1000;
+    long long endDate = ([date timeIntervalSince1970] + duration) * 1000.0;
+
+    NSLog(@"Requesting data for %@", publicKeys);
+    NSDictionary *query =
+        @{@"search" : @[ @{@"endDate" : [NSString stringWithFormat:@"%lli", endDate], @"ids" : publicKeys, @"startDate" : [NSString stringWithFormat:@"%lli", startDate]} ]};
+    NSData *httpBody = [NSJSONSerialization dataWithJSONObject:query options:0 error:nil];
+
+    NSLog(@"Query : %@", query);
+    NSString *authKey = @"authorization";
+    NSData *securityToken = searchPartyToken;
+    NSString *appleId = [self fetchAppleAccountId];
+    NSString *authValue = [self basicAuthForAppleID:appleId andToken:securityToken];
+
+    [self fetchAnisetteData:^(NSDictionary *_Nullable dict) {
+      if (dict == nil) {
+          completion(nil);
+          return;
+      }
+
+      NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:@"https://gateway.icloud.com/acsnservice/fetch"]];
+
+      [req setHTTPMethod:@"POST"];
+      [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+      [req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+      [req setValue:authValue forHTTPHeaderField:authKey];
+
+      NSDictionary *appleHeadersDict = dict;
+      for (id key in appleHeadersDict)
+          [req setValue:[appleHeadersDict objectForKey:key] forHTTPHeaderField:key];
+
+      NSLog(@"Headers:\n%@", req.allHTTPHeaderFields);
+
+      [req setHTTPBody:httpBody];
+
+      NSURLResponse *response;
+      NSError *error = nil;
+      NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+
+      if (error) {
+          NSLog(@"Error during request: \n\n%@", error);
+      }
+
+      completion(data);
+    }];
+}
+
 @end

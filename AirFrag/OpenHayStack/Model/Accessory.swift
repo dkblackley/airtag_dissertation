@@ -78,10 +78,13 @@ class Accessory: ObservableObject, Codable, Identifiable, Equatable, Hashable {
             guard let key = BoringSSL.generateNewPrivateKey() else {
                 throw KeyError.keyGenerationFailed
             }
+            self.id = key.hashValue
+            self.privateKey = key
+        } else {
+            self.id = key.hashValue
+            self.privateKey = key
         }
-        self.id = key.hashValue
-        self.privateKey = key
-        
+
         if (symKey.isEmpty) {
             let symKey = SymmetricKey(size: .bits256)
             self.symmetricKey = symKey.withUnsafeBytes {
@@ -90,6 +93,9 @@ class Accessory: ObservableObject, Codable, Identifiable, Equatable, Hashable {
         } else {
             self.symmetricKey = symKey
         }
+        
+        //print(self.privateKey.hexEncodedString())
+        //print(self.symmetricKey.hexEncodedString())
         
         self.usesDerivation = false
         self.oldestRelevantSymmetricKey = self.symmetricKey

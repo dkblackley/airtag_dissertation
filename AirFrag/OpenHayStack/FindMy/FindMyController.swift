@@ -112,84 +112,84 @@ class FindMyController: ObservableObject {
     }
 
     func fetchReports(with searchPartyToken: Data, completion: @escaping (Error?) -> Void) {
-
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else {
-                completion(FindMyErrors.objectReleased)
-                return
-            }
-            let fetchReportGroup = DispatchGroup()
-
-            let fetcher = ReportsFetcher()
-
-            var devices = self.devices
-            for deviceIndex in 0..<devices.count {
-                fetchReportGroup.enter()
-                devices[deviceIndex].reports = []
-
-                // Only use the newest keys for testing
-                let keys = devices[deviceIndex].keys
-
-                let keyHashes = keys.map({ $0.hashedKey.base64EncodedString() })
-
-                // 21 days
-                let duration: Double = (24 * 60 * 60) * 21
-                let startDate = Date() - duration
-
-                fetcher.query(forHashes: keyHashes, start: startDate, duration: duration, searchPartyToken: searchPartyToken) { jd in
-                    guard let jsonData = jd else {
-                        fetchReportGroup.leave()
-                        return
-                    }
-
-                    do {
-                        // Decode the report
-                        let report = try JSONDecoder().decode(FindMyReportResults.self, from: jsonData)
-                        devices[deviceIndex].reports = report.results
-
-                    } catch {
-                        print("Failed with error \(error)")
-                        devices[deviceIndex].reports = []
-                    }
-                    fetchReportGroup.leave()
-                }
-
-            }
-
-            // Completion Handler
-            fetchReportGroup.notify(queue: .main) {
-                print("Finished loading the reports. Now decrypt them")
-
-                // Export the reports to the desktop
-                var reports = [FindMyReport]()
-                for device in devices {
-                    for report in device.reports! {
-                        reports.append(report)
-                    }
-                }
-
-                #if EXPORT
-                    if let encoded = try? JSONEncoder().encode(reports) {
-                        let outputDirectory = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
-                        try? encoded.write(to: outputDirectory.appendingPathComponent("reports.json"))
-                    }
-                #endif
-
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else {
-                        completion(FindMyErrors.objectReleased)
-                        return
-                    }
-                    self.devices = devices
-
-                    self.decryptReports {
-                        completion(nil)
-                    }
-
-                }
-            }
-        }
-
+//
+//        DispatchQueue.global(qos: .background).async { [weak self] in
+//            guard let self = self else {
+//                completion(FindMyErrors.objectReleased)
+//                return
+//            }
+//            let fetchReportGroup = DispatchGroup()
+//
+//            let fetcher = ReportsFetcher()
+//
+//            var devices = self.devices
+//            for deviceIndex in 0..<devices.count {
+//                fetchReportGroup.enter()
+//                devices[deviceIndex].reports = []
+//
+//                // Only use the newest keys for testing
+//                let keys = devices[deviceIndex].keys
+//
+//                let keyHashes = keys.map({ $0.hashedKey.base64EncodedString() })
+//
+//                // 21 days
+//                let duration: Double = (24 * 60 * 60) * 21
+//                let startDate = Date() - duration
+//
+//                fetcher.query(forHashes: keyHashes, start: startDate, duration: duration, searchPartyToken: searchPartyToken) { jd in
+//                    guard let jsonData = jd else {
+//                        fetchReportGroup.leave()
+//                        return
+//                    }
+//
+//                    do {
+//                        // Decode the report
+//                        let report = try JSONDecoder().decode(FindMyReportResults.self, from: jsonData)
+//                        devices[deviceIndex].reports = report.results
+//
+//                    } catch {
+//                        print("Failed with error \(error)")
+//                        devices[deviceIndex].reports = []
+//                    }
+//                    fetchReportGroup.leave()
+//                }
+//
+//            }
+//
+//            // Completion Handler
+//            fetchReportGroup.notify(queue: .main) {
+//                print("Finished loading the reports. Now decrypt them")
+//
+//                // Export the reports to the desktop
+//                var reports = [FindMyReport]()
+//                for device in devices {
+//                    for report in device.reports! {
+//                        reports.append(report)
+//                    }
+//                }
+//
+//                #if EXPORT
+//                    if let encoded = try? JSONEncoder().encode(reports) {
+//                        let outputDirectory = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
+//                        try? encoded.write(to: outputDirectory.appendingPathComponent("reports.json"))
+//                    }
+//                #endif
+//
+//                DispatchQueue.main.async { [weak self] in
+//                    guard let self = self else {
+//                        completion(FindMyErrors.objectReleased)
+//                        return
+//                    }
+//                    self.devices = devices
+//
+//                    self.decryptReports {
+//                        completion(nil)
+//                    }
+//
+//                }
+//            }
+//        }
+    completion(nil)
     }
 
     func decryptReports(completion: () -> Void) {
