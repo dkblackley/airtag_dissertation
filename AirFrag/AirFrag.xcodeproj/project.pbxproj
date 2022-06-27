@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65089FBA2869EC900027A6C7 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65089FB92869EC900027A6C7 /* AuthenticationManager.swift */; };
+		65089FBB2869EC900027A6C7 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65089FB92869EC900027A6C7 /* AuthenticationManager.swift */; };
+		65089FBE286A01D80027A6C7 /* AuthenticationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 65089FBD286A01D80027A6C7 /* AuthenticationData.m */; };
+		65089FBF286A01D80027A6C7 /* AuthenticationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 65089FBD286A01D80027A6C7 /* AuthenticationData.m */; };
 		6520E1CA285615310009C68E /* fabricate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6520E1C9285615310009C68E /* fabricate.swift */; };
 		6520E1CB285615310009C68E /* fabricate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6520E1C9285615310009C68E /* fabricate.swift */; };
 		652AFF9128561D1A0026FEC2 /* sampleKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 652AFF9028561D1A0026FEC2 /* sampleKeys.plist */; };
@@ -97,6 +101,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65089FB92869EC900027A6C7 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		65089FBD286A01D80027A6C7 /* AuthenticationData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticationData.m; sourceTree = "<group>"; };
+		65089FC0286A02160027A6C7 /* AuthenticationData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticationData.h; sourceTree = "<group>"; };
 		6520E1C9285615310009C68E /* fabricate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fabricate.swift; sourceTree = "<group>"; };
 		652AFF9028561D1A0026FEC2 /* sampleKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = sampleKeys.plist; sourceTree = "<group>"; };
 		652AFF962856217B0026FEC2 /* PreviewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
@@ -174,6 +181,16 @@
 				678CCA791A002F0D06238A29 /* Pods-AirFrag.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		65089FBC286A017B0027A6C7 /* authentication */ = {
+			isa = PBXGroup;
+			children = (
+				65089FB92869EC900027A6C7 /* AuthenticationManager.swift */,
+				65089FBD286A01D80027A6C7 /* AuthenticationData.m */,
+				65089FC0286A02160027A6C7 /* AuthenticationData.h */,
+			);
+			path = authentication;
 			sourceTree = "<group>";
 		};
 		6520E1C8285614F10009C68E /* utilities */ = {
@@ -279,6 +296,7 @@
 		655277E9285612FA00ADB9DA /* AirFrag */ = {
 			isa = PBXGroup;
 			children = (
+				65089FBC286A017B0027A6C7 /* authentication */,
 				6520E1C8285614F10009C68E /* utilities */,
 				655277EA285612FA00ADB9DA /* AirFragApp.swift */,
 				655277EC285612FA00ADB9DA /* ContentView.swift */,
@@ -543,7 +561,9 @@
 				652AFFA82856217B0026FEC2 /* DecryptReport.swift in Sources */,
 				652AFFAC2856217B0026FEC2 /* FindMyController.swift in Sources */,
 				652AFFCD285688220026FEC2 /* AcessoryController.swift in Sources */,
+				65089FBA2869EC900027A6C7 /* AuthenticationManager.swift in Sources */,
 				65F2D23328576BC900C1962F /* FileManager.swift in Sources */,
+				65089FBE286A01D80027A6C7 /* AuthenticationData.m in Sources */,
 				652AFFC3285621920026FEC2 /* OpenHaystackPluginService.m in Sources */,
 				652AFFC92856611E0026FEC2 /* MainView.swift in Sources */,
 				6520E1CA285615310009C68E /* fabricate.swift in Sources */,
@@ -574,6 +594,7 @@
 				652AFFAF2856217B0026FEC2 /* Models.swift in Sources */,
 				652AFFAB2856217B0026FEC2 /* FindMyKeyDecoder.swift in Sources */,
 				652AFFC4285621920026FEC2 /* OpenHaystackPluginService.m in Sources */,
+				65089FBB2869EC900027A6C7 /* AuthenticationManager.swift in Sources */,
 				652AFFA72856217B0026FEC2 /* Accessory.swift in Sources */,
 				652AFFA52856217B0026FEC2 /* PreviewData.swift in Sources */,
 				659609682864964A00CE7E53 /* AirFragApp.swift in Sources */,
@@ -581,6 +602,7 @@
 				652AFFC2285621920026FEC2 /* AppleAccountData.m in Sources */,
 				65F2D23428576BC900C1962F /* FileManager.swift in Sources */,
 				652AFFCA2856611E0026FEC2 /* MainView.swift in Sources */,
+				65089FBF286A01D80027A6C7 /* AuthenticationData.m in Sources */,
 				652AFFB12856217B0026FEC2 /* BoringSSL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

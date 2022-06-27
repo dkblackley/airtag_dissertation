@@ -162,6 +162,8 @@
       NSLog(@"Headers:\n%@", req.allHTTPHeaderFields);
 
       [req setHTTPBody:httpBody];
+        
+        //NSLog(@"Body:\n%@", req.HTTPBody);
 
       NSURLResponse *response;
       NSError *error = nil;
