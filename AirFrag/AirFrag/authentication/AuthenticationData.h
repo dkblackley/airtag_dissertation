@@ -12,7 +12,7 @@
 
 @property(nonatomic, copy) NSString *deviceCA;
 @property(nonatomic, copy) NSString *CAhash;
-@property(nonatomic, copy) NSString *ECDSAsig;
+//@property(nonatomic, copy) NSString *ECDSAsig;
 
 //@property(nonatomic, copy) NSString *deviceUniqueIdentifier;
 //@property(nonatomic, copy) NSString *deviceSerialNumber;
@@ -21,11 +21,11 @@
 @property(nonatomic, copy) NSDate *date;
 @property(nonatomic, copy) NSTimeZone *timeZone;
 
-@property(nonatomic, copy) NSData *_Nullable searchPartyToken;
+//@property(nonatomic, copy) NSData *_Nullable searchPartyToken;
 
 - (instancetype)initWithDeviceCA:(NSString *)deviceCA
                   CAhash:(NSString *)CAhash
-                      ECDSAsig:(NSString *)ECDAsig
+//                      ECDSAsig:(NSString *)ECDAsig
 //                      routingInfo:(unsigned long long)routingInfo
 //           deviceUniqueIdentifier:(NSString *)deviceUniqueIdentifier
 //               deviceSerialNumber:(NSString *)deviceSerialNumber

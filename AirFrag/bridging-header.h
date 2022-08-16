@@ -14,5 +14,6 @@
 #import "ALTAnisetteData.h"
 #import "AppleAccountData.h"
 #import "OpenHaystackPluginService.h"
+#import "AuthenticationData.h"
 
 #endif /* Bridging_Header_h */

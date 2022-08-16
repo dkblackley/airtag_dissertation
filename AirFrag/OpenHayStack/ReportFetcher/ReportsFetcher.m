@@ -121,6 +121,12 @@
     }];
 }
 
+- (void)fetchSignData:(void (^)(NSDictionary *_Nullable))completion {
+    [[AuthenticationManager shared] requestHeaderObjC:^(NSDictionary *_Nullable dict) {
+        completion(dict);
+    }];
+}
+
 - (void)queryForHashes:(NSArray *)publicKeys
              startDate:(NSDate *)date
               duration:(double)duration
@@ -172,44 +178,67 @@
       if (error) {
           NSLog(@"Error during request: \n\n%@", error);
       }
+        
+        NSLog(@" %@", req);
+        NSLog(@"Request body %@", [[NSString alloc] initWithData:[req HTTPBody] encoding:NSUTF8StringEncoding]);
+        NSLog(@"%@", [req allHTTPHeaderFields]);
 
       completion(data);
     }];
 }
 
-- (void)submitData:(NSArray *)publicKeys
-             startDate:(NSDate *)date
-              duration:(double)duration
-      searchPartyToken:(nonnull NSData *)searchPartyToken
+- (NSData *)buildQuery:(NSString *)publicKeyHash
+                 startDate:(NSDate *)date
+                   payload:(NSString *)payload
+                completion:(void (^)(NSData *_Nullable))completion {
+    
+    // calculate the timestamps for the defined duration
+    //    long long startDate = [date timeIntervalSince1970] * 1000;
+    //    long long endDate = ([date timeIntervalSince1970] + duration) * 1000.0;
+    long long dateFound = [date timeIntervalSince1970];
+    
+    NSDictionary *query =
+    @{@"submit" : @[ @{@"payload": payload, @"id" : publicKeyHash} ]};
+    NSData *httpBody = [NSJSONSerialization dataWithJSONObject:query options:0 error:nil];
+    
+    
+    NSLog(@"Query : %@", query);
+    
+    return httpBody;
+}
+
+
+//Device identity certificate (base64)
+//SHA-256 hash of the signing CA (base64)
+//Device ECDSA signature (ASN.1)
+//Client’s time zone (e.g., GMT+9) Client’s time (Unix)
+//“searchpartyd/1 <iPhoneModel>/<OSVersion>”
+//X-Apple-Sign1 X-Apple-Sign2 X-Apple-Sign3 X-Apple-I-TimeZone X-Apple-I-ClientTime User-Agent
+
+- (void)submitData:(NSString *)publicKey
+            httpBody:(NSData *)httpBody
+            ECDSAsign:(NSData *)ECDSAsign
             completion:(void (^)(NSData *_Nullable))completion {
 
-    // calculate the timestamps for the defined duration
-    long long startDate = [date timeIntervalSince1970] * 1000;
-    long long endDate = ([date timeIntervalSince1970] + duration) * 1000.0;
+    NSLog(@"Submitting data for %@", publicKey);
 
-    NSLog(@"Requesting data for %@", publicKeys);
-    NSDictionary *query =
-        @{@"search" : @[ @{@"endDate" : [NSString stringWithFormat:@"%lli", endDate], @"ids" : publicKeys, @"startDate" : [NSString stringWithFormat:@"%lli", startDate]} ]};
-    NSData *httpBody = [NSJSONSerialization dataWithJSONObject:query options:0 error:nil];
-
-    NSLog(@"Query : %@", query);
     NSString *authKey = @"authorization";
-    NSData *securityToken = searchPartyToken;
+    //NSData *securityToken = searchPartyToken;
     NSString *appleId = [self fetchAppleAccountId];
-    NSString *authValue = [self basicAuthForAppleID:appleId andToken:securityToken];
+    //NSString *authValue = [self basicAuthForAppleID:appleId andToken:securityToken];
 
-    [self fetchAnisetteData:^(NSDictionary *_Nullable dict) {
+    [self fetchSignData:^(NSDictionary *_Nullable dict) {
       if (dict == nil) {
           completion(nil);
           return;
       }
 
-      NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:@"https://gateway.icloud.com/acsnservice/fetch"]];
+      NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:@"https://gateway.icloud.com/acsnservice/submit"]];
 
       [req setHTTPMethod:@"POST"];
       [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
       [req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-      [req setValue:authValue forHTTPHeaderField:authKey];
+      //[req setValue:authValue forHTTPHeaderField:authKey];
 
       NSDictionary *appleHeadersDict = dict;
       for (id key in appleHeadersDict)
@@ -226,6 +255,10 @@
       if (error) {
           NSLog(@"Error during request: \n\n%@", error);
       }
+        
+        NSLog(@" %@", req);
+        NSLog(@"Request body %@", [[NSString alloc] initWithData:[req HTTPBody] encoding:NSUTF8StringEncoding]);
+        NSLog(@"%@", [req allHTTPHeaderFields]);
 
       completion(data);
     }];

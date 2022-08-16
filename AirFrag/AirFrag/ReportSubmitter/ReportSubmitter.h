@@ -1,10 +1,8 @@
 //
-//  OpenHaystack – Tracking personal Bluetooth devices via Apple's Find My network
+//  ReportSubmitter.h
+//  AirFrag
 //
-//  Copyright © 2021 Secure Mobile Networking Lab (SEEMOO)
-//  Copyright © 2021 The Open Wireless Link Project
-//
-//  SPDX-License-Identifier: AGPL-3.0-only
+//  Created by Daniel on 12/07/2022.
 //
 
 #import <Foundation/Foundation.h>
@@ -59,18 +57,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Get AnisetteData from AuthKit or return an empty dictionary
 - (NSDictionary *_Nonnull)anisetteDataDictionary;
-
-
-
-- (void)submitData:(NSString *)publicKey
-          httpBody:(NSData *)httpBody
-         ECDSAsign:(NSData *)ECDSAsign
-        completion:(void (^)(NSData *_Nullable))completion;
-
-- (NSData *)buildQuery:(NSString *)publicKeyHash
-             startDate:(NSDate *)date
-               payload:(NSString *)payload
-            completion:(void (^)(NSData *_Nullable))completion;
 
 @end
 

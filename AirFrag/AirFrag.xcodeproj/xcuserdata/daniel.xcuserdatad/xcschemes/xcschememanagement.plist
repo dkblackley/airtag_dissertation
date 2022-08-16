@@ -7,7 +7,7 @@
 		<key>AirFrag.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>0</integer>
 		</dict>
 		<key>AirFragMail.xcscheme_^#shared#^_</key>
 		<dict>
@@ -15,6 +15,11 @@
 			<integer>3</integer>
 		</dict>
 		<key>OpenHaystackMail.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>SEP_IOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
