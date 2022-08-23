@@ -97,6 +97,7 @@
 		65F2D23128576AB100C1962F /* MailPluginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D22928576AB100C1962F /* MailPluginManager.swift */; };
 		65F2D23328576BC900C1962F /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D23228576BC900C1962F /* FileManager.swift */; };
 		65F2D23428576BC900C1962F /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D23228576BC900C1962F /* FileManager.swift */; };
+		ADE06855366DFD527FD98DEF /* libPods-AirFrag.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD35734A50C1AA1155D271DD /* libPods-AirFrag.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,7 @@
 		65F2D22928576AB100C1962F /* MailPluginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailPluginManager.swift; sourceTree = "<group>"; };
 		65F2D23228576BC900C1962F /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		678CCA791A002F0D06238A29 /* Pods-AirFrag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirFrag.release.xcconfig"; path = "Target Support Files/Pods-AirFrag/Pods-AirFrag.release.xcconfig"; sourceTree = "<group>"; };
+		CD35734A50C1AA1155D271DD /* libPods-AirFrag.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AirFrag.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28F78E169E0A788914D8CD1 /* Pods-AirFrag.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirFrag.debug.xcconfig"; path = "Target Support Files/Pods-AirFrag/Pods-AirFrag.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +177,7 @@
 				659B07DC28B03EE200693D34 /* _CryptoExtras in Frameworks */,
 				659B07DF28B0415A00693D34 /* SwiftECC in Frameworks */,
 				659B07DA28B03EE200693D34 /* Crypto in Frameworks */,
+ 0c2bbcdbceda91615c4ddad3f51ed25a3a9cd208
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +304,7 @@
 				65527805285612FC00ADB9DA /* AirFragUITests */,
 				655277E8285612FA00ADB9DA /* Products */,
 				46AA5AB62888A5EE31E20E61 /* Pods */,
+				FC14C30E3D464A1D4FC887C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -407,6 +411,14 @@
 				65F2D22728576AB100C1962F /* HaystackMail */,
 			);
 			path = MacOS;
+			sourceTree = "<group>";
+		};
+		FC14C30E3D464A1D4FC887C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD35734A50C1AA1155D271DD /* libPods-AirFrag.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
