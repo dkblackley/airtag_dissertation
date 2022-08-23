@@ -91,6 +91,11 @@ func testKeyRetreval(Acontroller: AccessoryController) {
         case .success(let accountData):
             let SPT = accountData.searchPartyToken
             
+            if (SPT == nil){
+                print("Please install the Openhaystack mail plugin, then open the mail app")
+                return
+            }
+            
             fetcher.query(forHashes: [public_key], start: current_date as Date, duration: 1814400, searchPartyToken: SPT!) {result in
                 guard let jsonData = result else {
                     return
@@ -112,7 +117,13 @@ func testKeyRetreval(Acontroller: AccessoryController) {
                     
                     let key = FindMyKey(advertisedKey: try myAccessory.getAdvertisementKey(), hashedKey: Data(digest), privateKey: private_key_data!, startTime: current_date as Date, duration: 1814400, pu: nil, yCoordinate: nil, fullKey: nil)
                     
-                    let locationReport = try DecryptReports.decrypt(report: reports[0], with: key)
+                    var downloaded_report = reports[0]
+                    var fake_report = FindMyLocationReport(lat: 0.0, lng: 0.0, acc: 6, dP: Foundation.Date(), t: Foundation.Date(), c: 6)
+                    //let locationReport = try DecryptReports.decrypt(report: downloaded_report, with: key)
+                    let encryptedReport = try EncryptReports.encrypt(report: fake_report, with: myAccessory.getActualPublicKey())
+                    downloaded_report.payload = encryptedReport
+                    let report_2 = try DecryptReports.decrypt(report: downloaded_report, with: key)
+                    print("test")
                 } catch {
                     print("Failed with error \(error)")
                 }

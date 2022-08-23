@@ -92,7 +92,7 @@ struct FindMyReportResults: Codable {
 
 struct FindMyReport: Codable {
     let datePublished: Date
-    let payload: Data
+    var payload: Data
     let id: String
     let statusCode: Int
 

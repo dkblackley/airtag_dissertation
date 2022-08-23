@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Calculate private key from derived data
 + (NSData *_Nullable)calculatePrivateKeyFromSharedData:(NSData *)sharedData masterBeaconPrivateKey:(NSData *)masterBeaconPrivateKey;
 
++ (NSData *_Nullable)uncompressPublicKey:(NSData *)publicKeyData ;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

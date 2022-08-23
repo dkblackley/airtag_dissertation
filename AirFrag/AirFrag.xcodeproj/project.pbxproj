@@ -67,6 +67,10 @@
 		659609662864964900CE7E53 /* AirFragApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655277EA285612FA00ADB9DA /* AirFragApp.swift */; };
 		659609672864964A00CE7E53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655277EC285612FA00ADB9DA /* ContentView.swift */; };
 		659609682864964A00CE7E53 /* AirFragApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655277EA285612FA00ADB9DA /* AirFragApp.swift */; };
+		659B07D728AE960200693D34 /* ReportEncrypter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659B07D628AE960200693D34 /* ReportEncrypter.swift */; };
+		659B07DA28B03EE200693D34 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 659B07D928B03EE200693D34 /* Crypto */; };
+		659B07DC28B03EE200693D34 /* _CryptoExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 659B07DB28B03EE200693D34 /* _CryptoExtras */; };
+		659B07DF28B0415A00693D34 /* SwiftECC in Frameworks */ = {isa = PBXBuildFile; productRef = 659B07DE28B0415A00693D34 /* SwiftECC */; };
 		659B5741286B822600664B75 /* MailPluginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D22928576AB100C1962F /* MailPluginManager.swift */; };
 		659B5745286B823F00664B75 /* ALTAnisetteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFB7285621920026FEC2 /* ALTAnisetteData.m */; };
 		659B5749286B824400664B75 /* AppleAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AFFB9285621920026FEC2 /* AppleAccountData.m */; };
@@ -150,6 +154,7 @@
 		65527806285612FC00ADB9DA /* AirFragUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirFragUITests.swift; sourceTree = "<group>"; };
 		65527808285612FC00ADB9DA /* AirFragUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirFragUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6568C42A2856176C00DC43BB /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
+		659B07D628AE960200693D34 /* ReportEncrypter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportEncrypter.swift; sourceTree = "<group>"; };
 		659E2AD1286474A600283045 /* builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = builder.swift; sourceTree = "<group>"; };
 		65E547D0287DDAB200EADFDE /* ReportSubmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportSubmitter.m; sourceTree = "<group>"; };
 		65E547D4287DDAC800EADFDE /* ReportSubmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportSubmitter.h; sourceTree = "<group>"; };
@@ -167,6 +172,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659B07DC28B03EE200693D34 /* _CryptoExtras in Frameworks */,
+				659B07DF28B0415A00693D34 /* SwiftECC in Frameworks */,
+				659B07DA28B03EE200693D34 /* Crypto in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +360,7 @@
 			children = (
 				65E547D0287DDAB200EADFDE /* ReportSubmitter.m */,
 				65E547D4287DDAC800EADFDE /* ReportSubmitter.h */,
+				659B07D628AE960200693D34 /* ReportEncrypter.swift */,
 			);
 			path = ReportSubmitter;
 			sourceTree = "<group>";
@@ -417,6 +426,11 @@
 			dependencies = (
 			);
 			name = AirFrag;
+			packageProductDependencies = (
+				659B07D928B03EE200693D34 /* Crypto */,
+				659B07DB28B03EE200693D34 /* _CryptoExtras */,
+				659B07DE28B0415A00693D34 /* SwiftECC */,
+			);
 			productName = AirFrag;
 			productReference = 655277E7285612FA00ADB9DA /* AirFrag.app */;
 			productType = "com.apple.product-type.application";
@@ -489,6 +503,10 @@
 				Base,
 			);
 			mainGroup = 655277DE285612FA00ADB9DA;
+			packageReferences = (
+				659B07D828B03EE200693D34 /* XCRemoteSwiftPackageReference "swift-crypto" */,
+				659B07DD28B0415A00693D34 /* XCRemoteSwiftPackageReference "SwiftECC" */,
+			);
 			productRefGroup = 655277E8285612FA00ADB9DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -577,6 +595,7 @@
 				65089FC7286B4B890027A6C7 /* CertRetreiver.swift in Sources */,
 				65089FBA2869EC900027A6C7 /* AuthenticationManager.swift in Sources */,
 				65F2D23328576BC900C1962F /* FileManager.swift in Sources */,
+				659B07D728AE960200693D34 /* ReportEncrypter.swift in Sources */,
 				65089FBE286A01D80027A6C7 /* AuthenticationData.m in Sources */,
 				652AFFC3285621920026FEC2 /* OpenHaystackPluginService.m in Sources */,
 				652AFFC92856611E0026FEC2 /* MainView.swift in Sources */,
@@ -952,6 +971,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		659B07D828B03EE200693D34 /* XCRemoteSwiftPackageReference "swift-crypto" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-crypto.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		659B07DD28B0415A00693D34 /* XCRemoteSwiftPackageReference "SwiftECC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/leif-ibsen/SwiftECC";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		659B07D928B03EE200693D34 /* Crypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 659B07D828B03EE200693D34 /* XCRemoteSwiftPackageReference "swift-crypto" */;
+			productName = Crypto;
+		};
+		659B07DB28B03EE200693D34 /* _CryptoExtras */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 659B07D828B03EE200693D34 /* XCRemoteSwiftPackageReference "swift-crypto" */;
+			productName = _CryptoExtras;
+		};
+		659B07DE28B0415A00693D34 /* SwiftECC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 659B07DD28B0415A00693D34 /* XCRemoteSwiftPackageReference "SwiftECC" */;
+			productName = SwiftECC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 655277DF285612FA00ADB9DA /* Project object */;
 }

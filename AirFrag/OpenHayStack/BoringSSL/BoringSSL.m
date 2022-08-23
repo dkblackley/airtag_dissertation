@@ -11,12 +11,57 @@
 
 #include <CNIOBoringSSL.h>
 #include <CNIOBoringSSL_ec.h>
+#include <CNIOBoringSSL_ecdh.h>
 #include <CNIOBoringSSL_ec_key.h>
 #include <CNIOBoringSSL_evp.h>
 #include <CNIOBoringSSL_hkdf.h>
 #include <CNIOBoringSSL_pkcs7.h>
 
 @implementation BoringSSL
+
+
+//+ (NSData *_Nullable)deriveEphemeralKeyFromKeys:(NSData *)privateKey andPublicKey:(NSData *)publicKey {
+//
+//    NSLog(@"Private key %@", [privateKey base64EncodedStringWithOptions:0]);
+//    NSLog(@"Public key %@", [publicKey base64EncodedStringWithOptions:0]);
+//
+//    EC_GROUP *curve = EC_GROUP_new_by_curve_name(NID_secp224r1);
+//
+//    EC_KEY *privkey = [self deriveEllipticCurvePrivateKey:privateKey group:curve];
+//    EC_KEY *pubkey = [self deriveEllipticCurvePrivateKey:publicKey group:curve];
+//
+//    const EC_POINT *genPubKey = EC_KEY_get0_public_key(pubkey);
+//    [self printPoint:genPubKey withGroup:curve];
+//
+//    NSMutableData *ephemeralKey = [[NSMutableData alloc] initWithLength:57];
+//
+//    EC_POINT *publicKey = EC_POINT_new(curve);
+//    size_t load_success = EC_POINT_oct2point(curve, publicKey, ephemeralKeyPoint.bytes, ephemeralKeyPoint.length, NULL);
+//    if (load_success == 0) {
+//        NSLog(@"Failed loading public key!");
+//        return nil;
+//    }
+//
+//    int res = ECDH_compute_key(ephemeralKey.mutableBytes, ephemeralKey.length, publicKey, privkey, nil);
+//
+//    if (res < 1) {
+//        NSLog(@"Failed with error: %d", res);
+//        BIO *bio = BIO_new(BIO_s_mem());
+//        ERR_print_errors(bio);
+//        char *buf;
+//        BIO_get_mem_data(bio, &buf);
+//        NSLog(@"Generating shared key failed %s", buf);
+//        BIO_free(bio);
+//    }
+//
+//    // NSLog(@"Shared key: %@", [sharedKey base64EncodedStringWithOptions:0]);
+//    //Free
+//    EC_KEY_free(key);
+//    EC_GROUP_free(curve);
+//    EC_POINT_free(ephemeralKey);
+//
+//    return sharedKey;
+//}
 
 + (NSData *_Nullable)deriveSharedKeyFromPrivateKey:(NSData *)privateKey andEphemeralKey:(NSData *)ephemeralKeyPoint {
 
@@ -29,7 +74,8 @@
 
     const EC_POINT *genPubKey = EC_KEY_get0_public_key(key);
     [self printPoint:genPubKey withGroup:curve];
-
+    
+    //This is loading the public key
     EC_POINT *publicKey = EC_POINT_new(curve);
     size_t load_success = EC_POINT_oct2point(curve, publicKey, ephemeralKeyPoint.bytes, ephemeralKeyPoint.length, NULL);
     if (load_success == 0) {
@@ -60,6 +106,50 @@
     return sharedKey;
 }
 
++ (NSData *_Nullable)deriveSharedKeyFromPublicKey:(NSData *)privEphKey advertKey:(NSData *)advertKey {
+    
+    NSLog(@"Private key %@", [privEphKey base64EncodedStringWithOptions:0]);
+    NSLog(@"Ephemeral key %@", [advertKey base64EncodedStringWithOptions:0]);
+    
+    EC_GROUP *curve = EC_GROUP_new_by_curve_name(NID_secp224r1);
+    
+    EC_KEY *key = [self deriveEllipticCurvePrivateKey:privEphKey group:curve];
+    
+    EC_POINT *genPubKey = [self loadEllipticCurvePublicBytesWith:curve andPointBytes:advertKey];
+    [self printPoint:genPubKey withGroup:curve];
+    
+    //This is loading the public key
+    EC_POINT *publicKey = EC_POINT_new(curve);
+    size_t load_success = EC_POINT_oct2point(curve, publicKey, advertKey.bytes, advertKey.length, NULL);
+    if (load_success == 0) {
+        NSLog(@"Failed loading public key!");
+        return nil;
+    }
+    
+    NSMutableData *sharedKey = [[NSMutableData alloc] initWithLength:28];
+    
+    int res = ECDH_compute_key(sharedKey.mutableBytes, sharedKey.length, publicKey, key, nil);
+    
+    if (res < 1) {
+        NSLog(@"Failed with error: %d", res);
+        BIO *bio = BIO_new(BIO_s_mem());
+        ERR_print_errors(bio);
+        char *buf;
+        BIO_get_mem_data(bio, &buf);
+        NSLog(@"Generating shared key failed %s", buf);
+        BIO_free(bio);
+    }
+    
+    // NSLog(@"Shared key: %@", [sharedKey base64EncodedStringWithOptions:0]);
+    //Free
+    EC_KEY_free(key);
+    EC_GROUP_free(curve);
+    EC_POINT_free(publicKey);
+    
+    return sharedKey;
+}
+
+//LOL
 + (EC_POINT *_Nullable)loadEllipticCurvePublicBytesWith:(EC_GROUP *)group andPointBytes:(NSData *)pointBytes {
 
     EC_POINT *point = EC_POINT_new(group);
@@ -120,6 +210,34 @@
     return key;
 }
 
+/// Get the public key on the curve from the public key bytes
+/// @param publicKeyData NSData representing the public key
+/// @param group The EC group representing the curve to use
++ (EC_POINT *_Nullable)deriveEllipticCurvePublicKey:(NSData *)publicKeyData group:(EC_GROUP *)group {
+    EC_POINT *point = EC_POINT_new(group);
+    
+    // Create big number context
+    BN_CTX *ctx = BN_CTX_new();
+    BN_CTX_start(ctx);
+    
+    
+    // Public key will be stored in point
+//    int res = EC_POINT_point2oct(group, point, POINT_CONVERSION_COMPRESSED, publicKeyData.bytes, publicKeyData.length, NULL);
+    
+    int res = EC_POINT_point2oct(group, point, POINT_CONVERSION_COMPRESSED, publicKeyData.bytes, publicKeyData.length, NULL);
+    [self printPoint:point withGroup:group];
+    
+    // Free the big numbers
+    BN_CTX_free(ctx);
+    
+    if (res != 1) {
+        // Failed
+        return nil;
+    }
+    
+    return point;
+}
+
 /// Derive a public key from a given private key
 /// @param privateKeyData an EC private key on the P-224 curve
 + (NSData *_Nullable)derivePublicKeyFromPrivateKey:(NSData *)privateKeyData {
@@ -165,6 +283,60 @@
         return nil;
     }
 
+    return publicKeyBytes;
+}
+
+/// Derive a uncompressed public key from a given private key
+/// @param privateKeyData an EC private key on the P-224 curve
++ (NSData *_Nullable)UncompressPrivateKey:(NSData *)privateKeyData {
+    EC_GROUP *curve = EC_GROUP_new_by_curve_name(NID_secp224r1);
+    EC_KEY *key = [self deriveEllipticCurvePrivateKey:privateKeyData group:curve];
+    
+    const EC_POINT *publicKey = EC_KEY_get0_public_key(key);
+    
+    size_t keySize = 28*2 + 1;
+    NSMutableData *publicKeyBytes = [[NSMutableData alloc] initWithLength:keySize];
+    
+    size_t size = EC_POINT_point2oct(curve, publicKey, POINT_CONVERSION_UNCOMPRESSED, publicKeyBytes.mutableBytes, keySize, NULL);
+    
+    //Free
+    EC_KEY_free(key);
+    EC_GROUP_free(curve);
+    
+    if (size == 0) {
+        return nil;
+    }
+    
+    return publicKeyBytes;
+}
+/// Uncompress a public key
+/// @param publicKeyData an EC public key on the P-224 curve
++ (NSData *_Nullable)uncompressPublicKey:(NSData *)publicKeyData {
+
+    EC_GROUP *curve = EC_GROUP_new_by_curve_name(NID_secp224r1);
+    EC_POINT *publicKey = [self loadEllipticCurvePublicBytesWith:curve andPointBytes:publicKeyData];
+    
+//    const EC_POINT *publicKey = EC_KEY_get0_public_key(key);
+    
+//    EC_POINT *publicKey = [self deriveEllipticCurvePublicKey:publicKeyData group:curve];
+//    res = EC_KEY_set_public_key(key, point);
+    
+    
+    size_t keySize = 28*2 + 1;
+    NSMutableData *publicKeyBytes = [[NSMutableData alloc] initWithLength:keySize];
+    
+    size_t size = EC_POINT_point2oct(curve, publicKey, POINT_CONVERSION_UNCOMPRESSED, publicKeyBytes.mutableBytes, keySize, NULL);
+    
+    //Free
+    //EC_KEY_free(key);
+    EC_GROUP_free(curve);
+    
+    if (size == 0) {
+        return nil;
+    }
+    
+    NSLog(@"eph Public key %@", [publicKeyBytes base64EncodedStringWithOptions:0]);
+    
     return publicKeyBytes;
 }
 

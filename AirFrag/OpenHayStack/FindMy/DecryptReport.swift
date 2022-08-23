@@ -25,10 +25,14 @@ struct DecryptReports {
 
         let privateKey = keyData
         let ephemeralKey = payloadData.subdata(in: 5..<62)
+        
+        print("Eph key \(ephemeralKey.base64EncodedString())")
 
         guard let sharedKey = BoringSSL.deriveSharedKey(fromPrivateKey: privateKey, andEphemeralKey: ephemeralKey) else {
             throw FindMyError.decryptionError(description: "Failed generating shared key")
         }
+        
+        print("Shared key \(sharedKey.base64EncodedString())")
 
         let derivedKey = self.kdf(fromSharedSecret: sharedKey, andEphemeralKey: ephemeralKey)
 
@@ -36,6 +40,8 @@ struct DecryptReports {
 
         let encData = payloadData.subdata(in: 62..<72)
         let tag = payloadData.subdata(in: 72..<payloadData.endIndex)
+        
+        print("Tag key \(tag.base64EncodedString())")
 
         let decryptedContent = try self.decryptPayload(payload: encData, symmetricKey: derivedKey, tag: tag)
         let locationReport = self.decode(content: decryptedContent, report: report)
@@ -57,6 +63,7 @@ struct DecryptReports {
 
         print("Decryption Key \(decryptionKey.base64EncodedString())")
         print("IV \(iv.base64EncodedString())")
+        print("tag: \(tag.base64EncodedString())")
 
         let sealedBox = try AES.GCM.SealedBox(nonce: AES.GCM.Nonce(data: iv), ciphertext: payload, tag: tag)
         let symKey = SymmetricKey(data: decryptionKey)
