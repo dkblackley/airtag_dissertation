@@ -6,7 +6,7 @@ Everything in the OpenHaystack folder is creditted to:  https://github.com/seemo
 Everything in the AirTag folder is my work. I plan to update this library more in the future, as most of the swift code is run in the constructor of the view class and dumps everything out to the terminal. 
 
 ## Usage
-Run pod install under the AirTag folder to install all the libraries for the swift files. You can brew install cocoapods if you don't already have it. 
+Run pod install under the AirTag folder to install all the libraries for the swift files. You can brew install cocoapods if you don't already have it. You can then open the .workspace file using Xcode 13.3 on macos12
 
 The python files in the pico_scripts folder requires a raspberry pi pico. Plug in the pico and install the pico script into the pico with something like Thonny. Remember to rename it to main.py! Then run main.py from the connected machine, changing the path to the device as required
 
